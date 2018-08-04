@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class GiangVien_Middleware
 {
@@ -15,6 +16,14 @@ class GiangVien_Middleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(Auth::check()){
+            if(Auth::user()->level == 2){
+                return $next($request);
+            }else{
+                return redirect('giang-vien/login');
+            }
+        }else{
+            return redirect('giang-vien/login');
+        }   
     }
 }

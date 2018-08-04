@@ -116,7 +116,7 @@
 <body>
 	<header id="header" class="">
 		<h1>
-			Teachers & Students Checkin System HUST
+			System Checkin Students and Teachers by HUST
 		</h1>
 	</header>
 	<section>

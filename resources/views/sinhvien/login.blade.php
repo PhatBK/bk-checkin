@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Checkin-Login</title>
+	<title>Student-Login</title>
 	<link rel="stylesheet" href="">
 	<style type="text/css" media="screen">
 		@import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -116,7 +116,7 @@
 <body>
 	<header id="header" class="">
 		<h1>
-			Teachers & Students Checkin System HUST
+			System Checkin Students and Teachers by HUST
 		</h1>
 	</header>
 	<section>
@@ -131,10 +131,5 @@
 		  </div>
 		</div>
 	</section>
-	<script>
-		$('.message a').click(function(){
-           $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-        });
-	</script>
 </body>
 </html>

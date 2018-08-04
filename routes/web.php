@@ -14,7 +14,28 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('login','UserController@getLogin');
-Route::post('check-login','UserController@postLogin');
+Route::get('add-user','UserController@getAddUser');
+Route::post('add-user','UserController@postAddUser');
 
-Route::get('get-data','SinhVienController@getData');
+Route::get('login','UserController@getLogin');
+Route::post('login','UserController@postLogin');
+
+
+Route::group(['prefix' => 'sinhvien', 'middleware' => 'sinhVienLogin'], function(){
+	Route::get('tongquan','SinhVienController@getTongQuan');
+	Route::get('lophoc','SinhVienController@getLopHoc');
+	Route::get('diemdanh','SinhVienController@getDiemDanh');
+	Route::get('thongtin','SinhVienController@getThongTinSinhVien');
+	Route::get('logout','UserController@getLogout');
+});
+
+// Route::get('giang-vien/login','GiangVienController@getLogin');
+// Route::post('giang-vien/login','GiangVienController@postLogin');
+// Route::group(['prefix' => 'giang-vien','middleware' => 'giangVienLogin'], function(){
+// 	Route::get('tong-quan','GiangVienController@getTongQuan');
+// });
+// Route::get('quan-ly/login','QuanLyController@getLogin');
+// Route::post('quan-ly/login','QuanLyController@postLogin');
+// Route::group(['prefix' => 'quan-ly','middleware' => 'quanLyLogin'], function(){
+// 	Route::get('tong-quan','QuanLyController@getTongQuan');
+// });
