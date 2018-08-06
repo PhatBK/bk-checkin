@@ -17,6 +17,7 @@ class User extends Authenticatable
     protected $fillable = [
         'id', 'ma_so', 'email','username', 'password','level',
     ];
+    // protected $primaryKey = "ma_so";
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -26,13 +27,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function thongTin(){
-        return $this->hasOne('App\Models\ThongTin','ma_so','ma_so');
-    }
     public function diemDanh(){
         return $this->hasMany('App\Models\DiemDanh','ma_so','ma_so');
     }
     public function keHoach(){
         return $this->hasMany('App\Models\KeHoach','ma_so','ma_so');
+    }
+
+    public function ngayNghi(){
+        return $this->hasManyThrough('App\Models\NgayNghi', 'App\Models\DiemDanh');
+    }
+
+    public function lopHoc() {
+        return $this->belongsToMany('App\Models\LopHoc');
     }
 }

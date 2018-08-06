@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Checkin-Login</title>
+	<title>Quan Ly Login</title>
 	<link rel="stylesheet" href="">
 	<style type="text/css" media="screen">
 		@import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -116,7 +116,7 @@
 <body>
 	<header id="header" class="">
 		<h1>
-			System Checkin Students and Teachers by HUST
+			Checkin-System Login for Manager
 		</h1>
 	</header>
 	<section>

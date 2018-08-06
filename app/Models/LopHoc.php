@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LopHoc extends Model
 {
     protected $table = "lop_hoc";
+    protected $primaryKey = 'ma_lop';
 
     public function diemDanh(){
     	return $this->hasMany('App\Models\DiemDanh','ma_lop');
@@ -18,6 +19,9 @@ class LopHoc extends Model
     	return $this->hasMany('App\Models\KeHoach','ma_lop');
     }
     public function monHoc(){
-    	return $this->belongsTo('App\Models\MonHoc','ma_mo');
+    	return $this->belongsTo('App\Models\MonHoc','ma_mon');
+    }
+    public function user(){
+        return $this->belongsToMany('App\User');
     }
 }

@@ -19,7 +19,7 @@ class SinhVienController extends Controller
     public function getTongQuan(){
     	$monhocs = MonHoc::all();
     	$lophocs = LopHoc::all();
-
+    	
     	return view('sinhvien.lophoc');
     }
     public function getLopHoc(){

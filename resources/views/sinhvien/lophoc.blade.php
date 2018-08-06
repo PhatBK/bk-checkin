@@ -79,10 +79,10 @@
        <h2>Danh Sách Các Môn Học Hôm Nay Của Sinh Viên</h2>
        <nav>
          <ul>
-           <li>Sinh Viên:&nbsp;&nbsp;<span>{{Auth::user()->thongTin->ho_ten}}</span></li>
+           <li>Sinh Viên:&nbsp;&nbsp;<span>{{Auth::user()->ho_ten}}</span></li>
            <li>Mã Số Sinh Viên:&nbsp;&nbsp;<span>{{Auth::user()->ma_so}}</span></li>
-           <li>Khóa:&nbsp;&nbsp;<span>{{Auth::user()->thongTin->khoa}}</span></li>
-           <li>Ngành Học:&nbsp;&nbsp;<span>{{Auth::user()->thongTin->vien}}</span></li>
+           <li>Khóa:&nbsp;&nbsp;<span>{{Auth::user()->khoa}}</span></li>
+           <li>Ngành Học:&nbsp;&nbsp;<span>{{Auth::user()->khoa_vien}}</span></li>
          </ul>
        </nav>
     </header><!-- /header -->     

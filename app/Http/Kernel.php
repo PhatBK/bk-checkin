@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'sinhVienLogin' => \App\Http\Middleware\SinhVien_Middleware::class,
 
-        // 'quanLyLogin' => \App\Http\Middleware\QuanLy_Middleware::class,
-        // 'giangVienLogin' => \App\Http\Middleware\GiangVien_Middleware::class,
+        'quanLyLogin' => \App\Http\Middleware\QuanLy_Middleware::class,
+        'giangVienLogin' => \App\Http\Middleware\GiangVien_Middleware::class,
     ];
 }
