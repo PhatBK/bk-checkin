@@ -101,6 +101,15 @@
 			color: black;
 			box-shadow: 20px 0 20px orange;
 		}
+		#manager {
+			padding: 5px;
+			margin-top : 5%; 
+			/*text-decoration: none;*/
+			font-size: 13px;
+			float: left;
+			font-weight: bold;
+			color: red;
+		}
 		body {
 		  background: #76b852; /* fallback for old browsers */
 		  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
@@ -116,7 +125,7 @@
 <body>
 	<header id="header" class="">
 		<h1>
-			Teachers & Students Checkin System HUST
+			Teachers & Students Login
 		</h1>
 	</header>
 	<section>
@@ -128,7 +137,9 @@
 		      <input name="password" type="password" placeholder="password" required="" />
 		      <button>Login</button>
 		    </form>
+		    <a id="manager" href="quan-ly/login" title="Manager Login"><i>Manager Login</i></a>
 		  </div>
+
 		</div>
 	</section>
 	<script>

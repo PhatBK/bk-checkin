@@ -19,8 +19,23 @@ class SinhVienController extends Controller
     public function getTongQuan(){
     	$monhocs = MonHoc::all();
     	$lophocs = LopHoc::all();
+    	$user = Auth::user();
+    	$kehoachs = $user->keHoach;
+    	$lophocs = [];
+    	$trangthai = true;
+    	$thoigian = "";
     	
-    	return view('sinhvien.lophoc');
+    	foreach ($kehoachs as $kehoach) {
+    		$lophoc = $kehoach->lopHoc;
+    		array_push($lophocs, $lophoc);
+    	}
+    	
+    	return view('sinhvien.lophoc',[
+    		'lophocs' => $lophocs,
+    		'trangthai' => $trangthai,
+    		'thoigian' => $thoigian,
+
+    	]);
     }
     public function getLopHoc(){
     	return view('sinhvien.lophoc');

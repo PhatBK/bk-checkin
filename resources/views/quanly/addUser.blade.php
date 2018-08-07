@@ -148,41 +148,41 @@
 </head>
 <body>
 	<div class="container">  
-	  <form id="contact" action="{{ $ma_lop }}" method="post">
+	  <form id="contact" action="{{ $ma_lop }}" method="post" autocomplete="">
 	  	    @csrf
 		    <h3>Thông Tin Tài Khoản</h3>
 		    <fieldset>
-		    	<input type="text" name="malop" value="{{ $ma_lop }}" disabled>
+		    	<input title="Mã Lớp Học" type="text" name="malop" value="{{ $ma_lop }}" disabled>
 		    </fieldset>
 		    <fieldset>
-		    	<input type="number" name="hocky" placeholder="Học Kỳ">
+		    	<input title="Học Kỳ" type="number" name="hocky" placeholder="Học Kỳ">
 		    </fieldset>
 		    <fieldset>
-		      <input name="ma_so" placeholder="Mã Số Sinh Viên" type="number" required autofocus>
+		      <input title="Mã Số Sinh Viên" name="ma_so" placeholder="Mã Số Sinh Viên" type="number" required autofocus>
 		    </fieldset>
 		    <fieldset>
-		      <input name="username" placeholder="Tài Khoản Đăng Nhập" type="text"  required autofocus>
+		      <input title="Tên Đăng Nhập" name="username" placeholder="Tài Khoản Đăng Nhập" type="text"  required autofocus>
 		    </fieldset>
 		    <fieldset>
-		      <input name="password" placeholder="Mật Khẩu" type="password" required>
+		      <input title="Mật Khẩu Đăng Nhập" name="password" placeholder="Mật Khẩu" type="password" required>
 		    </fieldset>
 		    <fieldset>
-		      <input name="confirmPass" placeholder="Xác Nhận Mật Khẩu" type="password" required>
+		      <input title="Xác Nhận Mật Khẩu Đăng Nhập" name="confirmPass" placeholder="Xác Nhận Mật Khẩu" type="password" required>
 		    </fieldset>
 		    <fieldset>
-		      <input name="email" placeholder="Mail" type="email" required>
+		      <input title="Email" name="email" placeholder="Mail" type="email" required>
 		    </fieldset>
 		    <fieldset>
-		      <input name="level" placeholder="Level" type="number" required>
+		      <input value="3" title="Level: 1 Quản lý, 2 Giảng Viên, 3 Sinh Viên" name="level" placeholder="Level" type="number" required>
 		    </fieldset>
 		    <fieldset>
-		    	<input type="text" name="hoten" placeholder="Tên đầy đủ của sinh viên" required>
+		    	<input title="Tên đầy đủ của sinh viên" type="text" name="hoten" placeholder="Tên đầy đủ của sinh viên" required>
 		    </fieldset>
 		    <fieldset>
-		    	<input type="text" name="khoavien" placeholder="Khoa, Viện" required>
+		    	<input title="Khoa, Viện" type="text" name="khoavien" placeholder="Khoa, Viện" required>
 		    </fieldset>
 		    <fieldset>
-		    	<input type="number" name="khoa" placeholder="Khóa">
+		    	<input title="Khóa" type="number" name="khoa" placeholder="Khóa">
 		    </fieldset>
 		    <fieldset>
 		      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Gửi</button>

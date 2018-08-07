@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class QuanLyController extends Controller
 {
+	// lấy giao diện đăng nhập cho quản lý
     public function getLogin(){
         return view('quanly.login');
     }
@@ -25,25 +26,32 @@ class QuanLyController extends Controller
          )){
             return redirect('quan-ly/tong-quan');
     	}else{
-            dd("Đăng nhập thất bại, sai: username hoặc password...");
     		return redirect('quan-ly/login');
     	}
     }
+
+    // đăng xuất khỏi trang quản lý
+    public function getLogout(){
+    	Auth::logout();
+    	return redirect('quan-ly/login');
+    }
+
+    // lấy tất cả các lớp học để hiển thị trong trang quản lý
     public function getTongQuan(){
     	$lophocs = LopHoc::all();
     	$danhsach_sinhviens = [];
 
-    	// dd($lophocs);
     	return view('quanly.quanly',[
     		'lophocs' => $lophocs,
-
     	]);
     }
+
+    // thêm sinh viên mới chưa có trong danh sách
     public function getAddUser($ma_lop){
     	return view('quanly.addUser',['ma_lop' => $ma_lop]);
     }
     public function postAddUser(Request $req,$ma_lop){
-    	// dd($req);
+    	
     	$user   = new User;
     	$user->ma_so        =	$req->ma_so;
     	$user->username     =	$req->username;
@@ -65,8 +73,18 @@ class QuanLyController extends Controller
     	$kehoach->save();
 
     	
-    	return redirect('quan-ly/tong-quan');
+    	return redirect('quan-ly/danh-sach-sinh-vien/'.$ma_lop);
     }
+
+    // thêm sinh viên đã có trong danh sách
+    public function getAddUserDanhSach($ma_lop){
+    	return view('quanly.addUserDanhSach');
+    }
+    public function postAddUserDanhSach(Request $req, $ma_lop){
+
+    }
+
+    // lấy danh sách sinh viên của một lớp học theo mã lớp học
     public function getDanhSachSinhVien($ma_lop){
     	
     	$lophoc = LopHoc::find($ma_lop);
@@ -87,6 +105,7 @@ class QuanLyController extends Controller
     	]);
     }
 
+    // sửa thông tin tài khoản của sinh viên
     public function getCapNhat($id){
     	$sinhvien = User::find($id);
     	return view('quanly.capnhat',[
@@ -96,7 +115,9 @@ class QuanLyController extends Controller
     public function postCapNhat(Request $req, $ma_so){
 
     }
+
+    // xóa tài khoản của sinh viên
     public function getXoaSinhVien($id){
-    	
+
     }
 }

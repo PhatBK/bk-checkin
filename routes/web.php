@@ -12,14 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 // Route::get('add-user','UserController@getAddUser');
 // Route::post('add-user','UserController@postAddUser');
-
 Route::get('login','UserController@getLogin');
 Route::post('login','UserController@postLogin');
-
 
 Route::group(['prefix' => 'sinhvien', 'middleware' => 'sinhVienLogin'], function(){
 	Route::get('tongquan','SinhVienController@getTongQuan');
@@ -28,7 +26,6 @@ Route::group(['prefix' => 'sinhvien', 'middleware' => 'sinhVienLogin'], function
 	Route::get('thongtin','SinhVienController@getThongTinSinhVien');
 	Route::get('logout','UserController@getLogout');
 });
-
 
 Route::get('quan-ly/login','QuanLyController@getLogin');
 Route::post('quan-ly/login','QuanLyController@postLogin');
@@ -39,10 +36,15 @@ Route::group(['prefix' => 'quan-ly','middleware' => 'quanLyLogin'], function(){
 	Route::get('add-user/{ma_lop}','QuanLyController@getAddUser');
 	Route::post('add-user/{ma_lop}','QuanLyController@postAddUser');
 
+	Route::get('add-user-danh-sach/{ma_lop}','QuanLyController@getAddUserDanhSach');
+	Route::post('add-user-danh-sach/{ma_lop}','QuanLyController@postAddUserDanhSach');
+
 	Route::get('danh-sach-sinh-vien/{ma_lop}','QuanLyController@getDanhSachSinhVien');
 
 	Route::get('cap-nhat/{id}','QuanLyController@getCapNhat');
 	Route::post('cap-nhat/{id}','QuanLyController@postCapNhat');
 
 	Route::get('xoa-sinh-vien/{id}','QuanLyController@getXoaSinhVien');
+
+	Route::get('logout','QuanLyController@getLogout');
 });

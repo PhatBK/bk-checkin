@@ -97,30 +97,44 @@
             <th>Bắt Đầu</th>
             <th>Kết Thúc</th>
             <th>Trạng Thái</th>
+            <th>Hoàn Thành</th>
           </tr>
           <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td data-toggle="modal" data-target="#myModal">Germany</td>
+          @foreach ($lophocs as $lophoc)
+        
+            <td>{{ $lophoc->monHoc->ten_mon }}</td>
+            <td>{{ $lophoc->ma_lop }}</td>
+            <td>{{ $lophoc->thu }}</td>
+            <td>{{ $lophoc->thoi_luong }}</td>
+            <td>{{ $lophoc->vi_tri }}</td>
+            <td>{{ $lophoc->bat_dau }}</td>
+            <td>{{ $lophoc->ket_thuc }}</td>
+            <td 
+            @if ($trangthai)
+              data-toggle="modal" data-target="#myModal{{ $lophoc->ma_lop }}"
+            @endif
+            >
+            @if ($trangthai)
+              <span style="color: green;">Điểm Danh</span>
+            @elseif(!$trangthai)
+              <span style="color: black;">Đóng Điểm Danh</span>
+            @endif
+            </td>
+            <td></td>
             <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="myModal{{ $lophoc->ma_lop }}" role="dialog">
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Bảng Điểm Danh Sinh Viên</h4>
+                    <h4 class="modal-title" style="text-align: center;">Bảng Điểm Danh Sinh Viên</h4>
                   </div>
                   <div class="modal-body">
-                    <p style="color:red">Bạn Đã Điểm Danh Thành Công</p>
-                    <p>Lớp Học:</p>
-                    <p>Mã Học Phần:</p>
-                    <p>Mã Lớp Học: </p>
+                    <p style="color:red;text-align: center;">Bạn Đã Điểm Danh Thành Công</p>
+                    <p>Lớp Học: &nbsp;&nbsp;&nbsp;{{ $lophoc->ma_lop }}</p>
+                    <p>Học Phần: &nbsp;&nbsp;&nbsp;{{ $lophoc->monHoc->ten_mon }}</p>
+                    <p>Thời Gian Điểm Danh: {{ $thoigian }} </p>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -129,7 +143,8 @@
               </div>
             </div>
           </tr>
-          <tr>
+          @endforeach
+       {{--    <tr>
             <td>Alfreds Futterkiste</td>
             <td>Maria Anders</td>
             <td>Germany</td>
@@ -138,27 +153,7 @@
             <td>Maria Anders</td>
             <td>Germany</td>
             <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
+          </tr> --}}
         </table>
       </section>
       <section class="logout">

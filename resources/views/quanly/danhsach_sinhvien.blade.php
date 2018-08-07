@@ -16,11 +16,14 @@
       background-color: white;
       border-radius: 3%;
       z-index: 3;
-      margin-bottom: 5%; 
+      margin-bottom: 2%; 
     }
     nav ul li span {
       font-family: ;
-      font-size: 20px;
+      font-size: 15px;
+      color: red;
+    }
+    span {
       color: red;
     }
     table {
@@ -75,7 +78,6 @@
     #delete {
     	color:red;
     }
-    
   </style>
 </head>
 <body>
@@ -83,16 +85,17 @@
        <h2>Danh Sách Sinh Viên</h2>
        <nav>
          <ul>
-           <li>Mã Lớp: &nbsp;&nbsp;{{ $lophoc->ma_lop }}</li>
-           <li>Môn:&nbsp;&nbsp;{{ $lophoc->monHoc->ten_mon  }}</li>
-           <li>Thứ:&nbsp;&nbsp;{{ $lophoc->thu }}</li>
-           <li>Thời Gian Bắt Đầu: &nbsp;&nbsp;{{ $lophoc->bat_dau }}</li>
-           <li>Thời Gian Kết Thúc: &nbsp;&nbsp;{{ $lophoc->ket_thuc }}</li>
+           <li>Mã Lớp: &nbsp;&nbsp;<span>{{ $lophoc->ma_lop }}</span></li>
+           <li>Môn:&nbsp;&nbsp;<span>{{ $lophoc->monHoc->ten_mon  }}</span></li>
+           <li>Thứ:&nbsp;&nbsp;<span>{{ $lophoc->thu }}</span></li>
+           <li>Địa Điểm: &nbsp;&nbsp; <span>{{ $lophoc->vi_tri }}</span></li>
+           <li>Thời Gian Bắt Đầu: &nbsp;&nbsp;<span>{{ $lophoc->bat_dau }}</span></li>
+           <li>Thời Gian Kết Thúc: &nbsp;&nbsp;<span>{{ $lophoc->ket_thuc }}</span></li>
            
-           <li>Số Buổi: &nbsp;&nbsp;{{ $lophoc->thoi_luong }}</li>
-           <li>Số Lượng Sinh Viên: &nbsp;&nbsp;{{ $so_luong }}</li>
-           <li>Số Lượng Đi Học:&nbsp;&nbsp;</li>
-           <li>Số Lượng Vắng Mặt:&nbsp;&nbsp;</li>
+           <li>Số Buổi: &nbsp;&nbsp;<span>{{ $lophoc->thoi_luong }}</span></li>
+           <li>Số Lượng Sinh Viên: &nbsp;&nbsp;<span>{{ $so_luong }}</span></li>
+           <li>Số Lượng Đi Học:&nbsp;&nbsp;<span></span></li>
+           <li>Số Lượng Vắng Mặt:&nbsp;&nbsp;<span></span></li>
          </ul>
        </nav>
     </header><!-- /header -->     

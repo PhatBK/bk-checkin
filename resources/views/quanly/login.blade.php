@@ -116,7 +116,7 @@
 <body>
 	<header id="header" class="">
 		<h1>
-			Checkin-System Login for Manager
+			Manager Login
 		</h1>
 	</header>
 	<section>
