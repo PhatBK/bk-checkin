@@ -35,6 +35,13 @@
 		  margin: 0 auto;
 		  position: relative;
 		}
+		.loi {
+			text-align: center;
+			color:red;
+			background-color: white;
+			margin-top: 3%;
+			margin-bottom: 1%; 
+		}
 
 		#contact input[type="text"],
 		#contact input[type="email"],
@@ -144,10 +151,25 @@
 		h3 {
 			text-align: center;
 		}
+		#cancel {
+			width: 100%;
+			text-align: center;
+			padding: 10px 10px 10px 10px;
+			background-color: orange; 
+		}
 	</style>
 </head>
 <body>
-	<div class="container">  
+	<div class="container"> 
+	<div class="loi">
+		@if(count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $err)
+              {{$err}} <br />
+            @endforeach
+        </div>
+        @endif
+	</div> 
 	  <form id="contact" action="{{ $ma_lop }}" method="post" autocomplete="">
 	  	    @csrf
 		    <h3>Thông Tin Tài Khoản</h3>
@@ -182,10 +204,13 @@
 		    	<input title="Khoa, Viện" type="text" name="khoavien" placeholder="Khoa, Viện" required>
 		    </fieldset>
 		    <fieldset>
-		    	<input title="Khóa" type="number" name="khoa" placeholder="Khóa">
+		    	<input title="Khóa" type="number" name="khoa" placeholder="Khóa" required >
 		    </fieldset>
 		    <fieldset>
 		      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Gửi</button>
+		    </fieldset>
+		    <fieldset>
+		    	<a id="cancel" href="../tong-quan" title="Trở lại trang quản lý">Thoát</a>
 		    </fieldset>
 	  </form>
 	</div>

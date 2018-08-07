@@ -41,10 +41,10 @@ Route::group(['prefix' => 'quan-ly','middleware' => 'quanLyLogin'], function(){
 
 	Route::get('danh-sach-sinh-vien/{ma_lop}','QuanLyController@getDanhSachSinhVien');
 
-	Route::get('cap-nhat/{id}','QuanLyController@getCapNhat');
-	Route::post('cap-nhat/{id}','QuanLyController@postCapNhat');
+	Route::get('cap-nhat/{id}/{ma_lop}','QuanLyController@getCapNhat');
+	Route::post('cap-nhat/{id}/{ma_lop}','QuanLyController@postCapNhat');
 
-	Route::get('xoa-sinh-vien/{id}','QuanLyController@getXoaSinhVien');
+	Route::get('xoa-sinh-vien/{id}/{ma_lop}','QuanLyController@getXoaSinhVien');
 
 	Route::get('logout','QuanLyController@getLogout');
 });

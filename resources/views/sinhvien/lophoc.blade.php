@@ -120,7 +120,13 @@
               <span style="color: black;">Đóng Điểm Danh</span>
             @endif
             </td>
-            <td></td>
+            <td>
+              @if ($hoanthanh)
+                <span style="color: blue;">Yes</span>
+              @elseif(!$hoanthanh)
+                <span style="color: red;">No</span>
+              @endif
+            </td>
             <!-- Modal -->
             <div class="modal fade" id="myModal{{ $lophoc->ma_lop }}" role="dialog">
               <div class="modal-dialog">
@@ -144,16 +150,6 @@
             </div>
           </tr>
           @endforeach
-       {{--    <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr> --}}
         </table>
       </section>
       <section class="logout">
@@ -169,5 +165,9 @@
           <p>4: Logout</p>
         </div>
       </footer>
+      {{-- viết Ajax cho điểm danh --}}
+      <script>
+        
+      </script>
 </body>
 </html>

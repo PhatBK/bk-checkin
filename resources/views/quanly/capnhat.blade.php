@@ -5,6 +5,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Quan Ly Cap Nhat User</title>
 	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<style type="text/css" media="screen">
 		@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
 		* {
@@ -34,6 +37,14 @@
 		  width: 100%;
 		  margin: 0 auto;
 		  position: relative;
+		}
+		
+		.loi {
+			text-align: center;
+			color:red;
+			background-color: white;
+			margin-top: 3%;
+			margin-bottom: 1%; 
 		}
 
 		#contact input[type="text"],
@@ -145,11 +156,25 @@
 		h3 {
 			text-align: center;
 		}
+		#cancel {
+			text-align: center;
+			padding: 10px 10px 10px 10px;
+			background-color: orange; 
+		}
 	</style>
 </head>
 <body>
-	<div class="container">  
-	  <form id="contact" action="../capnhat/{{$sinhvien->id}}" method="post">
+	<div class="container">
+	<div class="loi">
+		@if(count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $err)
+              {{$err}} <br />
+            @endforeach
+        </div>
+        @endif
+	</div> 
+	  <form id="contact" action="{{ $ma_lop }}" method="post">
 	  	    @csrf
 		    <h3>Thông Tin Tài Khoản</h3>
 		    <fieldset>
@@ -162,12 +187,18 @@
 		    </fieldset>
 
 		    <fieldset>
-		    	<label>Password:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    	<label>Đổi Mật Khẩu: &nbsp;&nbsp;</label><input type="checkbox" name="change_pass" />
-		      <input title="Bạn cần check vào đổi mật khẩu để có thể thay đổi mật khẩu" disabled value="{{ $sinhvien->password}}" name="password" placeholder="Mật Khẩu" type="password" required>
+		      <label>Password:</label>
+		      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		      &nbsp;&nbsp;&nbsp;
+		      <input id="changePass" type="checkbox" name="changePass" />
+		      <label>&nbsp;&nbsp;&nbsp;&nbsp;Đổi Mật Khẩu</label>
+		      <input class="password" title="Bạn cần check vào đổi mật khẩu để có thể thay đổi mật khẩu" disabled="" value="{{ $sinhvien->password}}" name="password" placeholder="Mật Khẩu" type="password" required>
 		    </fieldset>
 		    <fieldset>
-		      <input disabled value="{{ $sinhvien->password}}" name="confirmPass" placeholder="Xác Nhận Mật Khẩu" type="password" required>
+		      <input class="password" disabled="" value="{{ $sinhvien->password}}" name="confirmPass" placeholder="Xác Nhận Mật Khẩu" type="password" required>
 		    </fieldset>
 		    <fieldset>
 		    	<label>Email:</label>
@@ -175,7 +206,7 @@
 		    </fieldset>
 		    <fieldset>
 		    	<label>Level:</label>
-		      <input title="Bạn không thể thay đổi trường này" value="{{$sinhvien->level}}" disabled name="level" placeholder="Level" type="number" required>
+		      <input title="Bạn không thể thay đổi trường này" value="{{$sinhvien->level}}" name="level" placeholder="Level" type="number" required>
 		    </fieldset>
 		    <fieldset>
 		    	<label>Họ & Tên:</label>
@@ -192,7 +223,23 @@
 		    <fieldset>
 		      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Cập Nhật</button>
 		    </fieldset>
+		    <fieldset>
+		    	<a id="cancel" href="../../tong-quan" title="Trở lại trang quản lý">Thoát</a>
+		    </fieldset>
 	  </form>
 	</div>
+
+	<script>
+		 $(document).ready(function(){
+            $("#changePass").change(function(){
+                if($(this).is(":checked")){
+                        $(".password").removeAttr('disabled');
+                }else{
+                        $(".password").attr('disabled','');
+                }
+            });
+        });
+	</script>
+	
 </body>
 </html>

@@ -11,6 +11,7 @@ use App\Models\KeHoach;
 use App\Models\ThongTin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation;
 
 class QuanLyController extends Controller
 {
@@ -51,6 +52,31 @@ class QuanLyController extends Controller
     	return view('quanly.addUser',['ma_lop' => $ma_lop]);
     }
     public function postAddUser(Request $req,$ma_lop){
+    	$this->validate($req,
+    		[
+    			'ma_so' 		=> 'required|unique:users,ma_so|min:8',
+    			'username' 		=> 'required|unique:users',
+    			'email' 		=> 'required|unique:users',
+    			'password' 		=> 'required',
+    			'confirmPass' 	=> 'required|same:password'
+    		],
+    		[
+    			'ma_so.required' 		=> 'Chưa Nhập Mã Số Sinh Viên',
+    			'ma_so.unique' 			=> 'Mã Số Này Đã Tồn Tại, vui lòng thử lại mã khác',
+    			'ma_so.min'  			=> 'Mã số cần có ít độ dài nhỏ nhất là 8 số',
+
+    			'username.required' 	=> 'Chưa nhập tên đăng nhập cho tài khoản',
+    			'username.unique' 		=> 'Tên đăng nhập đã tồn tại, thử tên khác',
+
+    			'email.required'		=> 'Chưa Nhập Email',
+    			'email.unique'			=> 'Email này đã tồn tại, vui long nhập email khác',
+
+    			'password.required' 	=> 'Chưa nhập mật khẩu',
+
+    			'confirmPass.required'	=> "Chưa Xác nhận mật khẩu",
+    			'confirmPass.same' 		=> "Xác nhận mật khẩu không đúng"
+
+    		]);
     	
     	$user   = new User;
     	$user->ma_so        =	$req->ma_so;
@@ -74,6 +100,107 @@ class QuanLyController extends Controller
 
     	
     	return redirect('quan-ly/danh-sach-sinh-vien/'.$ma_lop);
+    }
+
+    // sửa thông tin tài khoản của sinh viên
+    public function getCapNhat($id, $ma_lop){
+    	$sinhvien = User::find($id);
+    	return view('quanly.capnhat',[
+    		'sinhvien' => $sinhvien,
+    		'ma_lop' => $ma_lop,
+    	]);
+    }
+    public function postCapNhat(Request $req, $id, $ma_lop){
+
+    	$user = User::find($id);
+
+    	if($req->ma_so != $user->ma_so && 
+    	  ($req->username == $user->username) &&
+    	  ($req->email == $user->email) ){
+    		$this->validate($req,
+	    		[
+	    			'ma_so' => 'required|unique:users,ma_so|min:8'
+	    		],
+	    		[
+
+	    			'ma_so.required' 		=> 'Chưa Nhập Mã Số Sinh Viên',
+	    			'ma_so.unique' 			=> 'Mã Số Này Đã Tồn Tại, vui lòng thử lại mã khác',
+	    			'ma_so.min'  			=> 'Mã số cần có ít độ dài nhỏ nhất là 8 số',
+	    		]);
+    	}else if($req->username != $user->username && 
+    			($req->ma_so == $user->ma_so) &&
+    			($req->email == $user->email)){
+    		$this->validate($req,
+	    		[
+	    			'username' 		=> 'required|unique:users',
+	    		],
+	    		[
+	    			'username.required' 	=> 'Chưa nhập tên đăng nhập cho tài khoản',
+	    			'username.unique' 		=> 'Tên đăng nhập đã tồn tại, thử tên khác',
+	    		]);
+
+    	}else if($req->email != $user->email &&
+    			($req->ma_so == $user->ma_so) &&
+    			($req->username == $user->username)){
+    		$this->validate($req,
+	    		[
+	    			'email' 		=> 'required|unique:users',
+	    		],
+	    		[
+	    			'email.required'		=> 'Chưa Nhập Email',
+	    			'email.unique'			=> 'Email này đã tồn tại, vui long nhập email khác'
+	    		]);
+
+    	}else if($req->username == $user->username && 
+    			($req->ma_so == $user->ma_so) &&
+    			($req->email == $user->email)){
+    	}else{
+    		$this->validate($req,
+	    		[
+	    			'ma_so' 		=> 'required|unique:users,ma_so|min:8',
+	    			'username' 		=> 'required|unique:users',
+	    			'email' 		=> 'required|unique:users',
+	    		],
+	    		[
+	    			'ma_so.required' 		=> 'Chưa Nhập Mã Số Sinh Viên',
+	    			'ma_so.unique' 			=> 'Mã Số Này Đã Tồn Tại, vui lòng thử lại mã khác',
+	    			'ma_so.min'  			=> 'Mã số cần có ít độ dài nhỏ nhất là 8 số',
+
+	    			'username.required' 	=> 'Chưa nhập tên đăng nhập cho tài khoản',
+	    			'username.unique' 		=> 'Tên đăng nhập đã tồn tại, thử tên khác',
+
+	    			'email.required'		=> 'Chưa Nhập Email',
+	    			'email.unique'			=> 'Email này đã tồn tại, vui long nhập email khác',
+
+	    		]);
+    	}
+
+        $user->ma_so        =	$req->ma_so;
+    	$user->username     =	$req->username;
+
+        if($req->changePass == "on"){
+    		$this->validate($req,
+    			[
+    				'password' 		=> 'required',
+    				'confirmPass' 	=> 'required|same:password',
+    			],
+    			[
+    				'password.required' 	=> 'Chưa Nhập Password',
+    				'confirmPass.required' 	=> 'Chưa xác nhận mật khẩu',
+    				'confirmPass.same' 		=> 'Mật khẩu xác nhận không đúng',
+    			]);
+    		$user->password     =   bcrypt($req->password);
+    	}
+
+    	$user->email        = 	$req->email;
+    	$user->level        = 	$req->level;
+    	$user->ho_ten 		=   $req->hoten;
+    	$user->khoa_vien    =   $req->khoavien;
+    	$user->khoa         =   $req->khoa;
+
+    	$user->save();
+    	 return redirect('quan-ly/danh-sach-sinh-vien/'.$ma_lop);
+    	
     }
 
     // thêm sinh viên đã có trong danh sách
@@ -105,19 +232,8 @@ class QuanLyController extends Controller
     	]);
     }
 
-    // sửa thông tin tài khoản của sinh viên
-    public function getCapNhat($id){
-    	$sinhvien = User::find($id);
-    	return view('quanly.capnhat',[
-    		'sinhvien' => $sinhvien,
-    	]);
-    }
-    public function postCapNhat(Request $req, $ma_so){
-
-    }
-
     // xóa tài khoản của sinh viên
-    public function getXoaSinhVien($id){
+    public function getXoaSinhVien($id, $ma_lop){
 
     }
 }

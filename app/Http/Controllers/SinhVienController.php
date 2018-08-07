@@ -23,6 +23,7 @@ class SinhVienController extends Controller
     	$kehoachs = $user->keHoach;
     	$lophocs = [];
     	$trangthai = true;
+    	$hoanthanh = true;
     	$thoigian = "";
     	
     	foreach ($kehoachs as $kehoach) {
@@ -34,6 +35,7 @@ class SinhVienController extends Controller
     		'lophocs' => $lophocs,
     		'trangthai' => $trangthai,
     		'thoigian' => $thoigian,
+    		'hoanthanh' => $hoanthanh,
 
     	]);
     }

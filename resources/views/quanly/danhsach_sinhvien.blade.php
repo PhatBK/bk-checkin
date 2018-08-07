@@ -78,26 +78,40 @@
     #delete {
     	color:red;
     }
+    #cancel {
+      float: left;
+      text-align: center;
+      padding: 10px 30px 10px 30px;
+      background-color: orange; 
+      margin-top: 10%; 
+    }
   </style>
 </head>
 <body>
     <header id="header" class="info">
        <h2>Danh Sách Sinh Viên</h2>
-       <nav>
-         <ul>
-           <li>Mã Lớp: &nbsp;&nbsp;<span>{{ $lophoc->ma_lop }}</span></li>
-           <li>Môn:&nbsp;&nbsp;<span>{{ $lophoc->monHoc->ten_mon  }}</span></li>
-           <li>Thứ:&nbsp;&nbsp;<span>{{ $lophoc->thu }}</span></li>
-           <li>Địa Điểm: &nbsp;&nbsp; <span>{{ $lophoc->vi_tri }}</span></li>
-           <li>Thời Gian Bắt Đầu: &nbsp;&nbsp;<span>{{ $lophoc->bat_dau }}</span></li>
-           <li>Thời Gian Kết Thúc: &nbsp;&nbsp;<span>{{ $lophoc->ket_thuc }}</span></li>
-           
-           <li>Số Buổi: &nbsp;&nbsp;<span>{{ $lophoc->thoi_luong }}</span></li>
-           <li>Số Lượng Sinh Viên: &nbsp;&nbsp;<span>{{ $so_luong }}</span></li>
-           <li>Số Lượng Đi Học:&nbsp;&nbsp;<span></span></li>
-           <li>Số Lượng Vắng Mặt:&nbsp;&nbsp;<span></span></li>
-         </ul>
-       </nav>
+       <div class="row">
+        <div class="col-md-6">
+         <nav>
+           <ul>
+             <li>Mã Lớp: &nbsp;&nbsp;<span>{{ $lophoc->ma_lop }}</span></li>
+             <li>Môn:&nbsp;&nbsp;<span>{{ $lophoc->monHoc->ten_mon  }}</span></li>
+             <li>Thứ:&nbsp;&nbsp;<span>{{ $lophoc->thu }}</span></li>
+             <li>Địa Điểm: &nbsp;&nbsp; <span>{{ $lophoc->vi_tri }}</span></li>
+             <li>Thời Gian Bắt Đầu: &nbsp;&nbsp;<span>{{ $lophoc->bat_dau }}</span></li>
+             <li>Thời Gian Kết Thúc: &nbsp;&nbsp;<span>{{ $lophoc->ket_thuc }}</span></li>
+             
+             <li>Số Buổi: &nbsp;&nbsp;<span>{{ $lophoc->thoi_luong }}</span></li>
+             <li>Số Lượng Sinh Viên: &nbsp;&nbsp;<span>{{ $so_luong }}</span></li>
+             <li>Số Lượng Đi Học:&nbsp;&nbsp;<span></span></li>
+             <li>Số Lượng Vắng Mặt:&nbsp;&nbsp;<span></span></li>
+           </ul>
+         </nav>
+        </div>
+        <div class="col-md-6">
+          <a id="cancel" href="../tong-quan" title="Trở lại trang quản lý">Thoát</a>
+        </div>
+      </div>
     </header><!-- /header -->     
       <section class="table">
         <table>
@@ -117,8 +131,8 @@
 	            <td>{{ $danhsach->khoa }}</td>
 	            <td>{{ $danhsach->khoa_vien }}</td>
 	            <td>0</td>
-	            <td><a id="edit" href="../cap-nhat/{{ $danhsach->id }}" title="">Sửa</a></td>
-	            <td><a id="delete" href="../xoa-sinh-vien/{{ $danhsach->id  }}" title="">Xóa</a></td>
+	            <td><a id="edit" href="../cap-nhat/{{ $danhsach->id }}/{{ $lophoc->ma_lop }}" title="">Sửa</a></td>
+	            <td><a id="delete" href="../xoa-sinh-vien/{{ $danhsach->id  }}/{{ $lophoc->ma_lop }}" title="">Xóa</a></td>
 	          </tr>
           @endforeach
         </table>

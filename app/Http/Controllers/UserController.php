@@ -25,7 +25,6 @@ class UserController extends Controller
          )){
             return redirect('sinhvien/tongquan');
     	}else{
-            dd("Login falure, password or username uncorrect..");
     		return redirect('login');
     	}
 
