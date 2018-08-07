@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 06, 2018 lúc 03:18 PM
+-- Thời gian đã tạo: Th8 07, 2018 lúc 11:49 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.2.0
 
@@ -62,13 +62,16 @@ INSERT INTO `ke_hoach` (`id`, `ma_so`, `ma_lop`, `hoc_ky`, `created_at`, `update
 (16, 20150001, 10001000, 1, '2018-08-06 09:33:59', '2018-08-06 09:33:59'),
 (17, 20150002, 10001000, 1, '2018-08-06 09:34:02', '2018-08-06 09:34:02'),
 (18, 20150003, 10001000, 1, '2018-08-06 09:34:05', '2018-08-06 09:34:05'),
-(20, 20140005, 10001002, 1, '2018-08-06 09:31:56', '2018-08-06 09:31:56'),
 (21, 20140007, 10001002, 1, '2018-08-06 09:32:41', '2018-08-06 09:32:41'),
-(22, 20150006, 10001001, 1, '2018-08-06 09:33:17', '2018-08-06 09:33:17'),
 (23, 20130001, 10001000, 1, '2018-08-06 09:35:01', '2018-08-06 09:35:01'),
 (24, 20140009, 10001000, 1, '2018-08-06 09:41:46', '2018-08-06 09:41:46'),
 (25, 20160008, 10001000, 1, '2018-08-06 09:59:26', '2018-08-06 09:59:26'),
-(26, 20120001, 10001001, 1, '2018-08-06 11:01:26', '2018-08-06 11:01:26');
+(26, 20120001, 10001001, 1, '2018-08-06 11:01:26', '2018-08-06 11:01:26'),
+(27, 20140001, 10001005, 1, '2018-08-06 14:42:29', '2018-08-06 14:42:29'),
+(28, 20160008, 10001000, 1, '2018-08-07 03:27:33', '2018-08-07 03:27:33'),
+(29, 20170001, 10001000, 1, '2018-08-07 03:33:45', '2018-08-07 03:33:45'),
+(30, 20170002, 10001000, 1, '2018-08-07 06:24:59', '2018-08-07 06:24:59'),
+(31, 20170004, 10001001, 1, '2018-08-07 06:26:30', '2018-08-07 06:26:30');
 
 -- --------------------------------------------------------
 
@@ -221,8 +224,8 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `ho_ten` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `khoa_vien` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `khoa` int(2) NOT NULL
+  `khoa_vien` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `khoa` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -230,21 +233,25 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ma_so`, `username`, `password`, `email`, `level`, `remember_token`, `created_at`, `updated_at`, `ho_ten`, `khoa_vien`, `khoa`) VALUES
-(1, 20140001, '20140001', '$2y$10$ZtFMWSRHRnmTEMTz/a/7hegaPA0BS4iXSeqEGLKUM7kuUmH0rB2eK', '222@gmail.com', 3, 'OHEZSmlGKv2NNKT65qZ61w69FAvMn459gDEOY0YQPv3eiedCxOlp0McqHFtA', '2018-08-03 03:49:53', '2018-08-03 03:49:53', 'Hoàng Xuân Vinh', 'CNTT&TT', 0),
-(2, 20140002, '20140002', '$2y$10$yhMtMKRQ850Aeeofe.i/4uZBP8jH4olkK03cruPjmgL.EbLy/CLBK', '20140514@gmail.com', 3, NULL, '2018-08-03 04:09:34', '2018-08-03 04:09:34', 'Hoàng Cao Huyền', 'CNTT&TT', 0),
-(3, 20140003, '2014003', '$2y$10$KHtpQYPGcYCLJEuaqtdlNe7MxUO8f3G3I.3zaFIoZozMQ.6h2tqJi', '20143397@gmail.com', 3, 'uFfsTStwIRNBWG7Ttxxes983qAvi4yGAK8TY9KPVcrq2KTemgIqWBvuAdg2R', '2018-08-03 04:10:05', '2018-08-03 04:10:05', 'Cao Bá Quát', 'CNTT&TT', 0),
-(4, 10101010, 'quanly1', '$2y$10$nG6lMAgZCD1Pn6q0WRhFTuDxWHfZ84FShDbfQkRgEJHeEN7gVdpti', 'quanly.hust@gmail.com', 1, NULL, '2018-08-06 02:39:46', '2018-08-06 02:39:46', 'Vũ Trọng phụng', 'CNTT&TT', 0),
+(1, 20140001, '20140001', '$2y$10$ZtFMWSRHRnmTEMTz/a/7hegaPA0BS4iXSeqEGLKUM7kuUmH0rB2eK', '222@gmail.com', 3, 'iv5n6PEWKMoyAUitEIEnLWcBW7oIQd7iBEq5E80mQSob95AYF9Rm4NMY1KB9', '2018-08-03 03:49:53', '2018-08-03 03:49:53', 'Hoàng Xuân Vinh', 'CNTT&TT', 59),
+(2, 20140002, '20140002', '$2y$10$yhMtMKRQ850Aeeofe.i/4uZBP8jH4olkK03cruPjmgL.EbLy/CLBK', '20140514@gmail.com', 3, NULL, '2018-08-03 04:09:34', '2018-08-03 04:09:34', 'Hoàng Cao Huyền', 'CNTT&TT', 59),
+(3, 20140003, '2014003', '$2y$10$KHtpQYPGcYCLJEuaqtdlNe7MxUO8f3G3I.3zaFIoZozMQ.6h2tqJi', '20143397@gmail.com', 3, 'uFfsTStwIRNBWG7Ttxxes983qAvi4yGAK8TY9KPVcrq2KTemgIqWBvuAdg2R', '2018-08-03 04:10:05', '2018-08-03 04:10:05', 'Cao Bá Quát', 'CNTT&TT', 59),
+(4, 10101010, 'quanly1', '$2y$10$nG6lMAgZCD1Pn6q0WRhFTuDxWHfZ84FShDbfQkRgEJHeEN7gVdpti', 'quanly.hust@gmail.com', 1, 'ycsKZI4Re4LQ5sTZ6ms1J9hyZn4mf3AWUuIntL9izQYXrx9uBH8WE808SegF', '2018-08-06 02:39:46', '2018-08-06 02:39:46', 'Vũ Trọng phụng', 'CNTT&TT', 0),
 (5, 10102102, 'quanly2', '$2y$10$YYWJDHlF1lKhqOXYGxT70OyfZ3RJk/Hp6zu.x75QPVI0F/zKq5zJ.', 'quanly2@quanly.hust.edu.vn', 1, NULL, '2018-08-06 02:40:29', '2018-08-06 02:40:29', 'Ngô Tất Tố', 'CNTT&TT', 0),
-(6, 20150001, '20150001', '$2y$10$4LPqJkV4mU0i7dSqR9EvZ.Ayleu4lhvZjlhore1CYelH6pXpc5Gnq', '20150001@gmail.com', 3, NULL, '2018-08-06 03:18:22', '2018-08-06 03:18:22', 'Nguyễn Du', 'CNTT&TT', 0),
-(7, 20150002, '20150002', '$2y$10$4HXZJWschyaAq.kOKp2TreHAidsNlOJBK2S5H30kPIJUK8NUNtx9S', '20161234@sis.hust.edu.vn', 3, NULL, '2018-08-06 03:24:30', '2018-08-06 03:24:30', 'Nam Cao', 'CNTT&TT', 0),
-(8, 20150003, '20150003', '$2y$10$NtBd/j7ROcWotCRNXdO6s.Inlbqd/nFuFZg4FJOZ38swonBcy5Rt6', '20163232@student.hust.edu.vn', 3, NULL, '2018-08-06 03:25:32', '2018-08-06 03:25:32', 'Hồ Xuân Hương', 'CNTT&TT', 0),
-(14, 20140005, '20140005', '$2y$10$huRx.xsnpFEhLvxi4lh2p.789G7WS6ckNaYZqFROiRsil.bp/ajc2', '20140005@gmail.com', 3, NULL, '2018-08-06 09:31:56', '2018-08-06 09:31:56', 'Nguyễn Xuân Quỳnh', 'CNTT&TT', 0),
-(15, 20140007, '20140007', '$2y$10$g4yA1MlcbyHk1NqMmblyceoGG/.zgw95y1wSTRi.8jiZBl3k4/BcW', '20140007@gmail.com', 3, NULL, '2018-08-06 09:32:41', '2018-08-06 09:32:41', 'Lưu Quang Vũ', 'CNTT&TT', 0),
-(16, 20150006, '20150006', '$2y$10$X8RJfVVJQIcH3oEX9e87Ce.i2IcrGFS7B/.ooj6N3BWI/Ebe3FU0W', '20150006@student.hust.edu.vn', 3, NULL, '2018-08-06 09:33:17', '2018-08-06 09:33:17', 'Tố Hữu', 'CNTT&TT', 0),
-(17, 20130001, '20130001', '$2y$10$gHZt.oqltUdDP4P1rAn7be8iSBPvztb7GMvhzKfnkYhu.qwHNB5E2', '20130001@sis.hust.edu.vn', 3, NULL, '2018-08-06 09:35:00', '2018-08-06 09:35:00', 'Tô Hoài', 'CNTT&TT', 0),
-(18, 20140009, '20140009', '$2y$10$72f.X3DvEtt7EsbKXqbhRuUODb8HInCnDEJdcSp87mDfvDzV5Mfxu', '20140009@gmail.com', 3, NULL, '2018-08-06 09:41:45', '2018-08-06 09:41:45', 'Ngô Bảo Châu', 'CNTT&TT', 0),
+(6, 20150001, '20150001', '$2y$10$4LPqJkV4mU0i7dSqR9EvZ.Ayleu4lhvZjlhore1CYelH6pXpc5Gnq', '20150001@gmail.com', 3, NULL, '2018-08-06 03:18:22', '2018-08-06 03:18:22', 'Nguyễn Du', 'CNTT&TT', 60),
+(7, 20150002, '20150002', '$2y$10$F2JgaXdVhzmuWP47AEY7Z.DEiuZV/M05LaxiH5wqRlSizzy5IQsee', '20161234@sis.hust.edu.vn', 3, NULL, '2018-08-06 03:24:30', '2018-08-07 07:56:08', 'Nguyễn Nam Cao', 'CNTT&TT', 60),
+(8, 20150003, '20150003', '$2y$10$NtBd/j7ROcWotCRNXdO6s.Inlbqd/nFuFZg4FJOZ38swonBcy5Rt6', '20163232@student.hust.edu.vn', 3, NULL, '2018-08-06 03:25:32', '2018-08-06 03:25:32', 'Hồ Xuân Hương', 'CNTT&TT', 60),
+(14, 20140005, '20140005', '$2y$10$huRx.xsnpFEhLvxi4lh2p.789G7WS6ckNaYZqFROiRsil.bp/ajc2', '20140005@gmail.com', 3, NULL, '2018-08-06 09:31:56', '2018-08-06 09:31:56', 'Nguyễn Xuân Quỳnh', 'CNTT&TT', 59),
+(15, 20140007, '20140007', '$2y$10$g4yA1MlcbyHk1NqMmblyceoGG/.zgw95y1wSTRi.8jiZBl3k4/BcW', '20140007@gmail.com', 3, NULL, '2018-08-06 09:32:41', '2018-08-06 09:32:41', 'Lưu Quang Vũ', 'CNTT&TT', 59),
+(16, 20150006, '20150006', '$2y$10$X8RJfVVJQIcH3oEX9e87Ce.i2IcrGFS7B/.ooj6N3BWI/Ebe3FU0W', '20150006@student.hust.edu.vn', 3, NULL, '2018-08-06 09:33:17', '2018-08-06 09:33:17', 'Tố Hữu', 'CNTT&TT', 60),
+(17, 20130001, '20130001', '$2y$10$gHZt.oqltUdDP4P1rAn7be8iSBPvztb7GMvhzKfnkYhu.qwHNB5E2', '20130001@sis.hust.edu.vn', 3, NULL, '2018-08-06 09:35:00', '2018-08-07 07:50:55', 'Nguyễn Tô Hoài', 'CNTT&TT', 58),
+(18, 20140009, '20140009', '$2y$10$72f.X3DvEtt7EsbKXqbhRuUODb8HInCnDEJdcSp87mDfvDzV5Mfxu', '20140009@gmail.com', 3, NULL, '2018-08-06 09:41:45', '2018-08-06 09:41:45', 'Ngô Bảo Châu', 'CNTT&TT', 61),
 (19, 20160008, '20160008', '$2y$10$iB68OftyiBqibYVsgcXZR.3f/3I11cwnujFJKqzkTr4jmGJXL8PmK', '20160008@sis.hust.edu.vn', 3, NULL, '2018-08-06 09:59:25', '2018-08-06 09:59:25', 'Lê Minh Khuya', 'DTVT', 61),
-(20, 20120001, '20120001', '$2y$10$mZ.5tTQxivSzAZe80.28A.viPNIijxvr4NZXwQx3R13APIsPsNxh6', '20120001@sis.hust.edu.vn', 3, NULL, '2018-08-06 11:01:26', '2018-08-06 11:01:26', 'Nguyễn Xuân Phúc', 'Dệt May', 56);
+(20, 20120001, '20120001', '$2y$10$mZ.5tTQxivSzAZe80.28A.viPNIijxvr4NZXwQx3R13APIsPsNxh6', '20120001@sis.hust.edu.vn', 3, NULL, '2018-08-06 11:01:26', '2018-08-06 11:01:26', 'Nguyễn Xuân Phúc', 'Dệt May', 56),
+(21, 20160008, '20160008', '$2y$10$9SmqubSzExjb0qepyQ3UMO5FdGT9GM7XarRQhWYQDJKlkEpn6VKY2', '20160008@gmail.com', 3, NULL, '2018-08-07 03:27:33', '2018-08-07 03:27:33', 'Nguyễn Phú Trọng', 'Cơ Điện Tử', 62),
+(22, 20170001, '20170001', '$2y$10$BGM2V/NJjRXtv2otTLNDmOa5R1sjsvOWUEf0SoVFZf1gJBN6rPe2W', '20170001@sis.hust.edu.vn', 3, 'TWSIrsk7swwVPUOCviYffk2E6KdfdCwWRh05HP5W0lefqta9mp2N1RglfJJI', '2018-08-07 03:33:45', '2018-08-07 03:33:45', 'Nguyễn Thị Kim Ngân', 'Điện Tự Động Hóa', 62),
+(23, 20170002, '20170002', '$2y$10$on1TVduOUtp62mNm9gr9he7v3xjz2ZWY32niSSscOkYaKSlqOI5Da', '20170002@sis.hust.edu.vn', 3, NULL, '2018-08-07 06:24:59', '2018-08-07 07:50:29', 'Cao Đức Phát', 'Hóa Dầu', 62),
+(24, 20170004, '20170004', '$2y$10$1NTLsYUPwI5gVHNxSOGJvOBMRKcJkAwDvSEy4dQXobpVajDWphgn.', '20170004@gmail.com', 3, NULL, '2018-08-07 06:26:30', '2018-08-07 06:26:30', 'Hoàng Trung Hải', 'Kinh Tế Và Quản Lý', 62);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -328,7 +335,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `ke_hoach`
 --
 ALTER TABLE `ke_hoach`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -346,7 +353,7 @@ ALTER TABLE `thong_tin`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

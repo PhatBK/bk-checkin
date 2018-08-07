@@ -220,7 +220,6 @@ class QuanLyController extends Controller
     	$users = [];
     	foreach ($kehoachs as $kehoach) {
     		$ma_so = $kehoach->ma_so;
-    		// $user = DB::table('users')->where('ma_so',$ma_so)->get();
     		$user = $kehoach->user;
     		array_push($users,$user);
     	}
@@ -234,6 +233,14 @@ class QuanLyController extends Controller
 
     // xóa tài khoản của sinh viên
     public function getXoaSinhVien($id, $ma_lop){
-
+    	$user = User::find($id) ;
+    	$kehoachUs = $user->keHoach;
+    	foreach ($kehoachUs as $kehoach) {
+    		if($kehoach->ma_lop == $ma_lop){
+    			$kehoach->delete();
+    			break;
+    		}
+    	}
+    	return redirect('quan-ly/danh-sach-sinh-vien/'.$ma_lop);
     }
 }
